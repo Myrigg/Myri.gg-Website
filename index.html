@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Myriad Clan</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: "Poppins", sans-serif;
+      background: #000;
+      overflow: hidden;
+    }
+
+    /* Background gradient animation */
+    body {
+      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Header */
+    header {
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px rgba(0,255,255,0.8), 0 0 16px rgba(138,43,226,0.8);
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    /* Events link */
+    header a {
+      font-size: 1rem;
+      color: #0ff;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header a:hover {
+      background: rgba(0,255,255,0.2);
+      color: #fff;
+    }
+
+    /* Iframe */
+    iframe {
+      flex-grow: 1;
+      border: none;
+      width: 100%;
+      height: 100%;
+      max-width: 500px;
+      margin: auto;
+      filter: drop-shadow(0 0 20px rgba(0,200,255,0.3));
+    }
+
+    /* Subtle hover pulse on header */
+    header:hover {
+      text-shadow: 0 0 12px rgba(0,255,255,1), 0 0 24px rgba(138,43,226,1);
+      transition: text-shadow 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>Myriad Clan</div>
+    <a href="cal/">Events Calendar</a>
+  </header>
+
+  <iframe src="https://discord.com/widget?id=1063782757450391644&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
+  <script>
+    const header = document.querySelector("header");
+    setInterval(() => {
+      header.style.textShadow =
+        "0 0 12px rgba(0,255,255,0.9), 0 0 24px rgba(138,43,226,0.9)";
+      setTimeout(() => {
+        header.style.textShadow =
+          "0 0 8px rgba(0,255,255,0.6), 0 0 16px rgba(138,43,226,0.6)";
+      }, 600);
+    }, 4000);
+  </script>
+</body>
+</html>
