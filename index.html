@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Myri.gg</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-
+  <link rel="icon" type="image/png" href="/myri_logo.png" />
+  
   <style>
     /* Reset */
     * {
@@ -55,6 +55,16 @@
       top: 0;
       z-index: 10;
     }
+    
+    .branding {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      height: 40px;
+      margin-right: 10px;
+    }
 
     /* Events link */
     header a {
@@ -92,7 +102,7 @@
 </head>
 <body>
   <header>
-    <div>Myri.gg</div>
+    <div class="branding"><img src="/favicon.ico" alt="Myri.gg Logo" class="logo" /><span>Myri.gg</span></div>
     <a href="cal/">Events Calendar</a>
   </header>
 
