@@ -7,7 +7,8 @@
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-
+  <link rel="icon" type="image/png" href="/myri_logo.png" />
+  
   <style>
     /* Reset */
     * {
@@ -42,7 +43,6 @@
     /* Header */
     header {
       padding: 1rem;
-      text-align: center;
       color: #fff;
       font-size: 2rem;
       font-weight: 600;
@@ -53,6 +53,14 @@
       position: sticky;
       top: 0;
       z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo {
+      height: 40px;
+      margin-right: 10px;
     }
 
     /* Iframe */
@@ -72,7 +80,7 @@
   </style>
 </head>
 <body>
-  <header>Myriad Event Calendar</header>
+  <header><img src="/favicon.ico" alt="Myri.gg Logo" class="logo" /><span>Myriad Event Calendar</span></header>
 
   <iframe src="https://calendar.google.com/calendar/embed?src=myriads2x%40gmail.com&ctz=UTC"></iframe>
 
