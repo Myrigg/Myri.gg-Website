@@ -230,15 +230,31 @@
     }
 
     .copy-chip {
-      background: rgba(122,0,255,0.2);
-      border: 1px solid rgba(122,0,255,0.5);
-      border-radius: 9999px;
-      padding: 0.25rem 0.7rem;
-      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(20,20,30,.25);
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,.85);
+      border-radius: 10px;
+      padding: .4rem .75rem;
+      font-size: .9rem;
       cursor: pointer;
-      transition: background 0.15s;
+      box-shadow: 0 0 10px rgba(255,255,255,.25);
+      transition: transform .12s, box-shadow .12s, background-color .12s, border-color .12s;
     }
-    .copy-chip:hover { background: rgba(122,0,255,0.38); }
+    .copy-chip:hover,
+    .copy-chip:focus {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+      border-color: #fff;
+      box-shadow: 0 0 16px rgba(255,255,255,.35);
+    }
+    .copy-chip:active { transform: translateY(0); }
+    .copy-chip:focus {
+      outline: 2px solid rgba(255,255,255,0.8);
+      outline-offset: 2px;
+    }
 
     /* Carousel */
     .carousel { margin-top: 2rem; position: relative; }
@@ -505,28 +521,15 @@
         }
 
         /* High-contrast copy buttons */
-        #join .copy-chip {
-          display: inline-flex;
-          align-items: center;
-          gap: .5rem;
+        #join .copy-chip { margin-top: .6rem; }
+
+        /* Button row inside steps */
+        #join .step-actions {
           margin-top: .6rem;
-          background: rgba(20,20,30,.25);
-          color: #fff;
-          border: 1.5px solid rgba(255,255,255,.85);
-          border-radius: 10px;
-          padding: .4rem .75rem;
-          font-size: .9rem;
-          cursor: pointer;
-          box-shadow: 0 0 10px rgba(255,255,255,.25);
-          transition: transform .12s, box-shadow .12s, background-color .12s, border-color .12s;
+          display: flex;
+          flex-wrap: wrap;
+          gap: .5rem;
         }
-        #join .copy-chip:hover {
-          transform: translateY(-1px);
-          background: rgba(255,255,255,.08);
-          border-color: #fff;
-          box-shadow: 0 0 16px rgba(255,255,255,.35);
-        }
-        #join .copy-chip:active { transform: translateY(0); }
 
         /* Bottom CTA buttons */
         #join .join-buttons {
@@ -556,6 +559,17 @@
       <div class="steps" role="list">
         <div class="card" role="listitem">
           <div class="step-head">
+            <span class="step-num" aria-hidden="true">0</span>
+            <div class="step-title">Java Edition required <span aria-hidden="true">💻</span></div>
+          </div>
+          <p class="step-body">This server is for Minecraft: Java Edition on PC (Windows/macOS/Linux), not Bedrock/console/mobile.</p>
+          <div class="step-actions">
+            <a class="btn" href="https://www.minecraft.net/en-us/store/minecraft-java-bedrock-edition-pc" target="_blank" rel="noopener">Get Java Edition</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="step-head">
             <span class="step-num" aria-hidden="true">1</span>
             <div class="step-title">Link your Minecraft to Microsoft <span aria-hidden="true">🔗</span></div>
           </div>
@@ -568,6 +582,10 @@
             <div class="step-title">Install Prism Launcher <span aria-hidden="true">📥</span></div>
           </div>
           <p class="step-body">Download and install Prism Launcher for Windows, macOS, or Linux.</p>
+          <div class="step-actions">
+            <a class="btn" href="https://prismlauncher.org/" target="_blank" rel="noopener">Download Prism Launcher</a>
+            <a class="btn" href="https://prismlauncher.org/wiki/getting-started/" target="_blank" rel="noopener">Prism Getting Started</a>
+          </div>
         </div>
 
         <div class="card" role="listitem">
@@ -579,6 +597,7 @@
           <button class="copy-chip" data-copy="Fantasy MC Fabric-0.2.3.6 [BETA]" aria-label="Copy modpack version">
             📋 Copy Modpack Version
           </button>
+          <small style="display:block; margin-top:.6rem;"><a href="https://www.curseforge.com/minecraft/modpacks/fantasy-minecraft-fabric" target="_blank" rel="noopener" style="color: var(--link);">View on CurseForge</a></small>
         </div>
 
         <div class="card" role="listitem">
@@ -596,6 +615,7 @@
 
       <div class="join-buttons">
         <a class="btn" href="https://prismlauncher.org/" target="_blank" rel="noopener">Download Prism Launcher</a>
+        <a class="btn" href="https://prismlauncher.org/wiki/getting-started/" target="_blank" rel="noopener">Prism Getting Started</a>
         <a class="btn" href="https://www.curseforge.com/minecraft/modpacks/fantasy-minecraft-fabric" target="_blank" rel="noopener">Open CurseForge Page</a>
         <button class="btn" data-copy="mc.myri.gg" aria-label="Copy server IP (bottom)">Copy Server IP</button>
       </div>
