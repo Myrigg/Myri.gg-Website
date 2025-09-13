@@ -18,6 +18,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="/myri_logo.png" />
+  <link rel="stylesheet" href="/assets/site.css" />
+  <script src="/assets/site.js" defer></script>
   <style>
     :root {
       --bg1: #0f0c29;
@@ -402,17 +404,7 @@
   </style>
 </head>
 <body>
-  <header>
-    <a href="/" class="branding">
-      <img src="/favicon.ico" alt="Myri.gg Logo" class="logo" />
-      <span>Myri.gg</span>
-    </a>
-    <nav aria-label="Main Navigation">
-      <a href="/discord/">Discord</a>
-      <a href="/cal/">Calendar</a>
-      <a href="/minecraft/" class="active" aria-current="page">Minecraft</a>
-    </nav>
-  </header>
+  <div data-include="/partials/header.html"></div>
 
   <main>
     <section id="hero" aria-label="Myri Minecraft Hero">
@@ -676,7 +668,7 @@
     </section>
   </main>
 
-  <footer>&copy; 2024 Myri.gg</footer>
+  <div data-include="/partials/footer.html"></div>
 
   <div id="copy-feedback" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
 

@@ -7,154 +7,28 @@
   <meta name="description" content="Stay up to date with upcoming Myriad events on the community calendar." />
   <meta property="og:title" content="Myriad Event Calendar" />
   <meta property="og:description" content="Community events and activities at a glance." />
-  <meta property="og:type" content="website" />
   <meta property="og:url" content="https://myri.gg/cal/" />
+  <meta property="og:type" content="website" />
   <meta property="og:image" content="https://myri.gg/myri_logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Myriad Event Calendar" />
   <meta name="twitter:description" content="Community events and activities at a glance." />
   <meta name="twitter:image" content="https://myri.gg/myri_logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="/myri_logo.png" />
-  <style>
-    :root {
-      --bg1: #0f0c29;
-      --bg2: #302b63;
-      --bg3: #24243e;
-      --bg4: #1a1a2e;
-      --neon-red: #ff005c;
-      --neon-purple: #7a00ff;
-      --text-light: #ffffff;
-      --link: #16d9ff;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html, body {
-      height: 100%;
-      width: 100%;
-      font-family: "Poppins", sans-serif;
-      background: #000;
-      color: var(--text-light);
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: linear-gradient(-45deg, var(--bg1), var(--bg2), var(--bg3), var(--bg4));
-      background-size: 400% 400%;
-      animation: gradientShift 20s ease infinite;
-      display: flex;
-      flex-direction: column;
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      body { animation: none; }
-    }
-
-    header {
-      padding: 1rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: .5px;
-      text-shadow: 0 0 8px rgba(0,255,255,0.5), 0 0 12px rgba(122,0,255,0.5);
-      border-bottom: 2px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(6px);
-      background-color: rgba(0,0,0,0.35);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .branding {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .logo { height: 40px; width: 40px; }
-
-    nav a {
-      color: var(--link);
-      text-decoration: none;
-      margin-left: 1rem;
-      font-size: 0.95rem;
-      transition: color 0.15s;
-      padding: .25rem .4rem;
-      border-radius: .4rem;
-    }
-    nav a:hover { color: #fff; }
-    nav a.active { color: #fff; background: rgba(22,217,255,.12); }
-
-    main {
-      flex: 1 1 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem 1rem;
-    }
-
-    .calendar-wrapper {
-      width: 100%;
-      max-width: 900px;
-      aspect-ratio: 16 / 9;
-      box-shadow: 0 0 20px rgba(0,200,255,0.3);
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    @media (max-width: 600px) {
-      main { padding: 1rem; }
-      .calendar-wrapper {
-        aspect-ratio: auto;
-        height: 100%;
-      }
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem 0;
-      font-size: 0.85rem;
-      border-top: 2px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(6px);
-      background-color: rgba(0,0,0,0.35);
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/site.css" />
+  <script src="/assets/site.js" defer></script>
 </head>
 <body>
-  <header>
-    <a href="/" class="branding"><img src="/myri_logo.png" alt="Myri.gg logo" class="logo" />Myri.gg</a>
-    <nav>
-      <a href="/discord/">Discord</a>
-      <a href="/cal/" class="active">Calendar</a>
-      <a href="/minecraft/">Minecraft</a>
-    </nav>
-  </header>
-
-  <main>
+  <div data-include="/partials/header.html"></div>
+  <main class="container">
     <div class="calendar-wrapper">
       <iframe src="https://calendar.google.com/calendar/embed?src=myriads2x%40gmail.com&ctz=UTC&mode=AGENDA" title="Myriad event calendar"></iframe>
     </div>
   </main>
-
-  <footer>&copy; 2024 Myri.gg</footer>
-
+  <div data-include="/partials/footer.html"></div>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -167,4 +41,3 @@
   </script>
 </body>
 </html>
-

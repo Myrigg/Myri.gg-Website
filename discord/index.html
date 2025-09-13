@@ -3,69 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Myriad Discord</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <title>Myriad Discord | Myri.gg</title>
+  <meta name="description" content="Connect with the Myri community on Discord." />
+  <meta property="og:title" content="Myriad Discord" />
+  <meta property="og:description" content="Connect with the Myri community on Discord." />
+  <meta property="og:url" content="https://myri.gg/discord/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://myri.gg/myri_logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Myriad Discord" />
+  <meta name="twitter:description" content="Connect with the Myri community on Discord." />
+  <meta name="twitter:image" content="https://myri.gg/myri_logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="/myri_logo.png" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      height: 100%;
-      width: 100%;
-      font-family: "Poppins", sans-serif;
-      background: #000;
-      overflow: hidden;
-    }
-    body {
-      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
-      background-size: 400% 400%;
-      animation: gradientShift 20s ease infinite;
-      display: flex;
-      flex-direction: column;
-    }
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    header {
-      padding: 1rem 1.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-shadow: 0 0 8px rgba(0,255,255,0.8), 0 0 16px rgba(138,43,226,0.8);
-      border-bottom: 2px solid rgba(255,255,255,0.1);
-      backdrop-filter: blur(6px);
-    }
-    .logo {
-      height: 40px;
-      margin-right: 10px;
-    }
-    main {
-      flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/site.css" />
+  <script src="/assets/site.js" defer></script>
 </head>
 <body>
-  <header><img src="/favicon.ico" alt="Myri.gg Logo" class="logo" /><span>Myriad Discord</span></header>
-  <main>
-    <iframe src="https://discord.com/widget?id=1063782757450391644&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+  <div data-include="/partials/header.html"></div>
+  <main class="container">
+    <iframe class="discord-widget" src="https://discord.com/widget?id=1063782757450391644&theme=dark" allowtransparency="true" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" title="Myriad Discord"></iframe>
   </main>
+  <div data-include="/partials/footer.html"></div>
 </body>
 </html>
