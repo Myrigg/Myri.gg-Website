@@ -73,7 +73,7 @@
     .chips{display:flex;gap:.5rem;flex-wrap:wrap;}
     .chip{padding:.35rem .75rem;border-radius:9999px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);cursor:pointer;font-size:.8rem;display:flex;flex-direction:column;align-items:center;line-height:1.1;}
     .chip:focus{outline:2px solid #fff;outline-offset:2px;}
-    .chip.active{background:linear-gradient(90deg,var(--neon-red),var(--neon-purple));border:none;box-shadow:0 0 8px rgba(255,0,92,.6);}
+    .chip.active{background:var(--neon-purple);border:none;box-shadow:0 0 8px var(--neon-purple);}
     .chip.disabled{cursor:not-allowed;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:#bbb;animation:pulse 2s infinite;}
     .chip.disabled .soon{font-size:.65rem;opacity:.8;}
     @keyframes pulse{0%,100%{box-shadow:0 0 0 rgba(255,255,255,0.1);}50%{box-shadow:0 0 8px rgba(255,255,255,0.2);}}
@@ -84,8 +84,9 @@
     .tips button{background:none;border:none;color:#0ff;cursor:pointer;}
     .popover{position:absolute;right:0;margin-top:.25rem;background:#222;padding:.5rem 1rem;border-radius:.5rem;box-shadow:0 0 10px rgba(0,0,0,.5);width:250px;display:none;}
     .popover p{font-size:.8rem;margin-bottom:.5rem;}
-    .etiquette{max-width:1000px;margin:2rem auto;padding:1rem 1.5rem;background:rgba(0,0,0,0.6);border-radius:.75rem;box-shadow:0 0 10px rgba(255,0,92,0.2);}
+    .etiquette{max-width:1000px;margin:2rem auto;padding:1rem 1.5rem;background:rgba(0,0,0,0.6);border-radius:.75rem;box-shadow:0 0 10px rgba(255,0,92,0.2);text-align:center;}
     .etiquette a{color:#0ff;}
+    .cta-group{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:1rem;}
     #footer-cta{text-align:center;margin:4rem 0;}
     footer{text-align:center;padding:2rem 0;border-top:1px solid rgba(255,255,255,0.1);}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
@@ -95,6 +96,11 @@
     .modal-content h2{margin-bottom:1rem;}
     .modal-content button{display:block;width:100%;margin:.5rem 0;}
     .close-modal{background:none;border:none;color:#fff;position:absolute;top:1rem;right:1rem;font-size:1.5rem;cursor:pointer;}
+    @media (max-width:600px){
+      #calendar-shell{margin:0;padding:1rem 0;border-radius:0;box-shadow:none;background:none;}
+      .iframe-wrapper{height:calc(100vh - 10rem);padding-top:0;}
+      .iframe-wrapper iframe{height:100%;}
+    }
   </style>
 </head>
 <body>
@@ -171,15 +177,51 @@
 
   <script>
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.querySelectorAll('[data-link]').forEach(el=>{el.addEventListener('click',()=>{const url=el.getAttribute('data-link');window.open(url,'_blank','noopener');});});
-    document.querySelectorAll('[data-copy]').forEach(el=>{el.addEventListener('click',()=>{const text=el.getAttribute('data-copy');navigator.clipboard.writeText(text).then(()=>{const fb=document.getElementById('copy-feedback');fb.textContent='Link copied';setTimeout(()=>{fb.textContent='';},2000);});});});
+
+    document.querySelectorAll('[data-link]').forEach(el=>{
+      el.addEventListener('click',()=>{
+        const url=el.getAttribute('data-link');
+        window.open(url,'_blank','noopener');
+      });
+    });
+
+    document.querySelectorAll('[data-copy]').forEach(el=>{
+      el.addEventListener('click',()=>{
+        const text=el.getAttribute('data-copy');
+        navigator.clipboard.writeText(text).then(()=>{
+          const fb=document.getElementById('copy-feedback');
+          fb.textContent='Link copied';
+          setTimeout(()=>{fb.textContent='';},2000);
+        });
+      });
+    });
+
     const modal=document.getElementById('subscribe-modal');
-    document.getElementById('open-subscribe').addEventListener('click',()=>{modal.style.display='flex';modal.setAttribute('aria-hidden','false');});
-    modal.addEventListener('click',e=>{if(e.target===modal||e.target.classList.contains('close-modal')){modal.style.display='none';modal.setAttribute('aria-hidden','true');}});
+    document.getElementById('open-subscribe').addEventListener('click',()=>{
+      modal.style.display='flex';
+      modal.setAttribute('aria-hidden','false');
+    });
+    modal.addEventListener('click',e=>{
+      if(e.target===modal||e.target.classList.contains('close-modal')){
+        modal.style.display='none';
+        modal.setAttribute('aria-hidden','true');
+      }
+    });
+
     const tipsBtn=document.getElementById('tips-btn');
     const popover=document.getElementById('tips-popover');
-    tipsBtn.addEventListener('click',()=>{const shown=popover.style.display==='block';popover.style.display=shown?'none':'block';tipsBtn.setAttribute('aria-expanded',String(!shown));});
-    document.addEventListener('click',e=>{if(!popover.contains(e.target) && e.target!==tipsBtn){popover.style.display='none';tipsBtn.setAttribute('aria-expanded','false');}});
+    tipsBtn.addEventListener('click',()=>{
+      const shown=popover.style.display==='block';
+      popover.style.display=shown?'none':'block';
+      tipsBtn.setAttribute('aria-expanded',String(!shown));
+    });
+    document.addEventListener('click',e=>{
+      if(!popover.contains(e.target) && e.target!==tipsBtn){
+        popover.style.display='none';
+        tipsBtn.setAttribute('aria-expanded','false');
+      }
+    });
+
     const calendarIds={
       runescape:'myriads2x@gmail.com',
       minecraft:'',
@@ -190,8 +232,15 @@
     let currentView='AGENDA';
     const buildSrc=(id,view)=>`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(id)}&ctz=Europe%2FLondon&mode=${view}&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showDate=0&showTz=0`;
     const iframe=document.querySelector('#calendar-container iframe');
-    const setIframe=()=>{const src=buildSrc(calendarIds[currentCalendar],currentView);iframe.src=src;iframe.dataset.src=src;};
+    const iframeWrapper=document.querySelector('.iframe-wrapper');
+
+    const setIframe=()=>{
+      const src=buildSrc(calendarIds[currentCalendar],currentView);
+      iframe.src=src;
+      iframe.dataset.src=src;
+    };
     setIframe();
+
     document.querySelectorAll('[data-calendar]').forEach(btn=>{
       btn.addEventListener('click',()=>{
         if(btn.classList.contains('disabled')) return;
@@ -201,6 +250,7 @@
         setIframe();
       });
     });
+
     document.querySelectorAll('[data-view]').forEach(btn=>{
       btn.addEventListener('click',()=>{
         document.querySelectorAll('[data-view]').forEach(b=>b.classList.remove('active'));
@@ -209,11 +259,37 @@
         setIframe();
       });
     });
-    const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){iframe.src=iframe.dataset.src;observer.disconnect();}});});
+
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          iframe.src=iframe.dataset.src;
+          observer.disconnect();
+        }
+      });
+    });
     observer.observe(iframe);
+
     let loaded=false;
     iframe.addEventListener('load',()=>{loaded=true;});
-    setTimeout(()=>{if(!loaded){document.getElementById('calendar-fallback').style.display='block';}},8000);
+    setTimeout(()=>{
+      if(!loaded){
+        document.getElementById('calendar-fallback').style.display='block';
+      }
+    },8000);
+
+    const resizeCalendar=()=>{
+      if(window.innerWidth<=600){
+        const top=document.getElementById('calendar-shell').getBoundingClientRect().top;
+        iframeWrapper.style.height=`${window.innerHeight-top}px`;
+        iframeWrapper.style.paddingTop='0';
+      }else{
+        iframeWrapper.style.height='';
+        iframeWrapper.style.paddingTop='62.5%';
+      }
+    };
+    window.addEventListener('load',resizeCalendar);
+    window.addEventListener('resize',resizeCalendar);
   </script>
 
   <script type="application/ld+json">
