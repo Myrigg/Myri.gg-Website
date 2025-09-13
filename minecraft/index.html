@@ -439,30 +439,165 @@
     </section>
 
     <section id="join">
+      <style>
+        /* Scoped styles for the Join section only */
+        #join .steps {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 1.25rem;
+          margin-top: 2rem;
+        }
+
+        #join .card {
+          background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.4));
+          border: 1px solid rgba(122,0,255,0.45);
+          box-shadow: 0 0 14px rgba(122,0,255,0.25);
+          border-radius: 16px;
+          padding: 1.25rem 1.25rem 1rem;
+          position: relative;
+          overflow: hidden;
+        }
+
+        #join .card::before {
+          /* subtle glow accent in the corner */
+          content: "";
+          position: absolute;
+          top: -40px; right: -40px;
+          width: 120px; height: 120px;
+          background: radial-gradient(closest-side, rgba(122,0,255,.25), transparent 70%);
+          pointer-events: none;
+        }
+
+        #join h2 {
+          text-align: center;
+          font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+        }
+
+        #join .step-head {
+          display: flex;
+          align-items: center;
+          gap: .65rem;
+          margin-bottom: .35rem;
+          line-height: 1.25;
+        }
+
+        #join .step-num {
+          flex: none;
+          width: 2.1rem; height: 2.1rem;
+          border-radius: 9999px;
+          display: inline-flex; align-items: center; justify-content: center;
+          background: var(--neon-purple);
+          color: #fff;
+          font-weight: 700;
+          box-shadow: 0 0 12px rgba(122,0,255,.9);
+          text-shadow: 0 0 6px rgba(0,0,0,.5);
+        }
+
+        #join .step-title {
+          font-size: 1.05rem;
+          font-weight: 600;
+        }
+
+        #join .step-body {
+          margin-top: .35rem;
+          font-size: .95rem;
+          opacity: .95;
+        }
+
+        /* High-contrast copy buttons */
+        #join .copy-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: .5rem;
+          margin-top: .6rem;
+          background: rgba(20,20,30,.25);
+          color: #fff;
+          border: 1.5px solid rgba(255,255,255,.85);
+          border-radius: 10px;
+          padding: .4rem .75rem;
+          font-size: .9rem;
+          cursor: pointer;
+          box-shadow: 0 0 10px rgba(255,255,255,.25);
+          transition: transform .12s, box-shadow .12s, background-color .12s, border-color .12s;
+        }
+        #join .copy-chip:hover {
+          transform: translateY(-1px);
+          background: rgba(255,255,255,.08);
+          border-color: #fff;
+          box-shadow: 0 0 16px rgba(255,255,255,.35);
+        }
+        #join .copy-chip:active { transform: translateY(0); }
+
+        /* Bottom CTA buttons */
+        #join .join-buttons {
+          margin-top: 2rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: .8rem;
+          justify-content: center;
+        }
+        #join .btn {
+          min-width: 220px;
+          font-weight: 600;
+          letter-spacing: .2px;
+        }
+
+        /* Small helper for inline code hostnames */
+        #join code {
+          background: rgba(255,255,255,.08);
+          border: 1px solid rgba(255,255,255,.15);
+          padding: .15rem .35rem;
+          border-radius: 6px;
+        }
+      </style>
+
       <h2>How to Join</h2>
-      <div class="steps">
-        <div class="card">
-          <h3><span aria-hidden="true">1.</span> Link your Minecraft account to your Microsoft account.</h3>
+
+      <div class="steps" role="list">
+        <div class="card" role="listitem">
+          <div class="step-head">
+            <span class="step-num" aria-hidden="true">1</span>
+            <div class="step-title">Link your Minecraft to Microsoft <span aria-hidden="true">🔗</span></div>
+          </div>
+          <p class="step-body">Ensure your Minecraft account is connected to your Microsoft account for authentication.</p>
         </div>
-        <div class="card">
-          <h3><span aria-hidden="true">2.</span> Download Prism Launcher.</h3>
-          <a class="btn" href="https://prismlauncher.org/" target="_blank" rel="noopener">Download Prism Launcher</a>
+
+        <div class="card" role="listitem">
+          <div class="step-head">
+            <span class="step-num" aria-hidden="true">2</span>
+            <div class="step-title">Install Prism Launcher <span aria-hidden="true">📥</span></div>
+          </div>
+          <p class="step-body">Download and install Prism Launcher for Windows, macOS, or Linux.</p>
         </div>
-        <div class="card">
-          <h3><span aria-hidden="true">3.</span> Add an instance of Fantasy MC Fabric</h3>
-          <p>Version: Fantasy MC Fabric-0.2.3.6 [BETA]</p>
-          <button class="copy-chip" data-copy="Fantasy MC Fabric-0.2.3.6 [BETA]">Copy</button>
+
+        <div class="card" role="listitem">
+          <div class="step-head">
+            <span class="step-num" aria-hidden="true">3</span>
+            <div class="step-title">Add the Fantasy MC Fabric instance <span aria-hidden="true">🧩</span></div>
+          </div>
+          <p class="step-body">Search for and add: <strong>Fantasy MC Fabric-0.2.3.6 [BETA]</strong> for Minecraft 1.21.1.</p>
+          <button class="copy-chip" data-copy="Fantasy MC Fabric-0.2.3.6 [BETA]" aria-label="Copy modpack version">
+            📋 Copy Modpack Version
+          </button>
         </div>
-        <div class="card">
-          <h3><span aria-hidden="true">4.</span> Join the server: <code>mc.myri.gg</code></h3>
-          <button class="copy-chip" data-copy="mc.myri.gg">Copy Server IP</button>
-          <small>Also listed publicly as ‘Myri.gg Myriad Fantasy MC’.</small>
+
+        <div class="card" role="listitem">
+          <div class="step-head">
+            <span class="step-num" aria-hidden="true">4</span>
+            <div class="step-title">Join the server <span aria-hidden="true">🌐</span></div>
+          </div>
+          <p class="step-body">Use server address: <code>mc.myri.gg</code></p>
+          <button class="copy-chip" data-copy="mc.myri.gg" aria-label="Copy server IP">
+            📋 Copy Server IP
+          </button>
+          <small style="display:block; margin-top:.6rem; opacity:.8;">Also listed publicly as ‘Myri.gg Myriad Fantasy MC’.</small>
         </div>
       </div>
+
       <div class="join-buttons">
         <a class="btn" href="https://prismlauncher.org/" target="_blank" rel="noopener">Download Prism Launcher</a>
-        <button class="btn" data-copy="mc.myri.gg">Copy Server IP</button>
         <a class="btn" href="https://www.curseforge.com/minecraft/modpacks/fantasy-minecraft-fabric" target="_blank" rel="noopener">Open CurseForge Page</a>
+        <button class="btn" data-copy="mc.myri.gg" aria-label="Copy server IP (bottom)">Copy Server IP</button>
       </div>
     </section>
 
