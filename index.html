@@ -77,8 +77,7 @@
     }
     .tile{
       position:relative;border-radius:var(--tile-radius);overflow:hidden;
-      display:grid;place-items:center;cursor:pointer;text-align:center;
-      background:rgba(255,255,255,.02);
+      aspect-ratio:1/1;display:block;cursor:pointer;
       border:2px solid var(--neon-purple);
       box-shadow:0 0 12px rgba(122,0,255,.5),0 0 28px rgba(122,0,255,.25);
       transition:transform .3s ease,box-shadow .3s ease;
@@ -87,25 +86,11 @@
       transform:scale(1.03);
       box-shadow:0 0 18px rgba(122,0,255,.8),0 0 40px rgba(122,0,255,.4);
     }
-    .tile::before{
-      content:"";position:absolute;inset:0;
-      background:var(--image,#111) center/cover no-repeat;
-      z-index:-1;opacity:.8;
-    }
-    .label{
-      padding:.9rem 1.2rem;border-radius:14px;
-      background:rgba(0,0,0,.6);
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow:0 0 14px rgba(122,0,255,.45);
-      font-weight:600;font-size:clamp(18px,2.2vw,28px);
-    }
-    .sub{
-      margin-top:.4rem;color:#cfc6ff;font-weight:600;font-size:clamp(12px,1.4vw,16px);
-    }
-    .rs3{--image:url('/images/RS3-button.png');}
-    .mc{--image:url('/images/MC-button.png');}
-    .fps{--image:url('/images/FPS-button.png');}
-    .disc{--image:url('/images/DISCORD-button.png');}
+    .tile:focus-visible{outline:3px solid rgba(255,255,255,.7);outline-offset:2px;}
+    .rs3{background:url('/images/RS3-button.png') center/contain no-repeat;}
+    .mc{background:url('/images/MC-button.png') center/contain no-repeat;}
+    .fps{background:url('/images/FPS-button.png') center/contain no-repeat;}
+    .disc{background:url('/images/DISCORD-button.png') center/contain no-repeat;}
     footer{text-align:center;font-size:.75rem;padding:1rem;color:rgba(255,255,255,.6);}
   </style>
 </head>
@@ -123,30 +108,10 @@
       <a href="https://discord.gg/JoinMyriad" class="btn">Join Discord</a>
     </section>
     <section id="grid">
-      <a class="tile rs3" href="/runescape/" aria-label="RuneScape 3">
-        <div>
-          <div class="label">RuneScape 3</div>
-          <div class="sub">Clans • Bossing • Events</div>
-        </div>
-      </a>
-      <a class="tile mc" href="/minecraft/" aria-label="Minecraft">
-        <div>
-          <div class="label">Minecraft</div>
-          <div class="sub">Fantasy MC Fabric • 1.21.x</div>
-        </div>
-      </a>
-      <a class="tile fps" href="/fps/" aria-label="FPS">
-        <div>
-          <div class="label">FPS — CS2 / Battlefield</div>
-          <div class="sub">Servers • LFG • Tournaments</div>
-        </div>
-      </a>
-      <a class="tile disc" href="/discord/" aria-label="Discord">
-        <div>
-          <div class="label">Discord</div>
-          <div class="sub">Chat • VC • Announcements</div>
-        </div>
-      </a>
+      <a class="tile rs3" href="/runescape/" aria-label="RuneScape 3" role="button"></a>
+      <a class="tile mc" href="/minecraft/" aria-label="Minecraft" role="button"></a>
+      <a class="tile fps" href="/fps/" aria-label="FPS" role="button"></a>
+      <a class="tile disc" href="/discord/" aria-label="Discord" role="button"></a>
     </section>
   </main>
   <footer>© 2025 Myri.gg</footer>
