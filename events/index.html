@@ -14,7 +14,6 @@
   <meta name="twitter:title" content="Myri Events" />
   <meta name="twitter:description" content="Clan nights, boss runs, and community raids" />
   <meta name="twitter:image" content="https://myri.gg/myri_logo.png" />
-  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=1920&q=80" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="/myri_logo.png" />
   <style>
@@ -62,18 +61,14 @@
     nav a{color:#0ff;text-decoration:none;margin-left:1rem;font-size:.9rem;transition:color .2s;}
     nav a:hover,nav a:focus{color:#fff;}
     main{flex:1 1 auto;}
-    .btn{background:linear-gradient(90deg,var(--neon-red),var(--neon-purple));border:none;border-radius:9999px;padding:.75rem 1.5rem;color:#fff;font-weight:600;cursor:pointer;box-shadow:0 0 10px rgba(255,0,92,.5);transition:box-shadow .3s;}    
-    .btn:hover,.btn:focus{box-shadow:0 0 20px rgba(122,0,255,.7);}
+    .btn{background:var(--neon-purple);color:#fff;border:none;border-radius:8px;padding:.75rem 1.5rem;cursor:pointer;box-shadow:0 0 10px var(--neon-purple);transition:transform .2s,box-shadow .2s;font-size:1rem;}
+    .btn:hover{transform:scale(1.05);box-shadow:0 0 20px var(--neon-purple);}
+    @media (prefers-reduced-motion: reduce){.btn{transition:none;}.btn:hover{transform:none;box-shadow:0 0 10px var(--neon-purple);}}
     .btn:focus{outline:2px solid #fff;outline-offset:2px;}
-    /* Hero */
-    #hero{min-height:70vh;padding:6rem 1rem 4rem;background-image:url('https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center;position:relative;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;}
-    #hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);background-image:radial-gradient(circle at center,rgba(255,0,92,.2),rgba(122,0,255,.2));}
-    #hero>*{position:relative;}
-    #hero h1{font-size:3rem;margin-bottom:1rem;text-shadow:0 0 10px rgba(255,0,92,.6),0 0 20px rgba(122,0,255,.6);text-transform:uppercase;}
-    #hero p{font-size:1.25rem;margin-bottom:2rem;}
-    #hero .cta-group{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+    /* Hero removed */
     /* Calendar card */
-    #calendar-shell{max-width:1000px;margin:4rem auto;padding:2rem;background:rgba(0,0,0,0.6);border-radius:1rem;box-shadow:0 0 20px rgba(122,0,255,0.2);border:1px solid rgba(122,0,255,0.4);}
+    #calendar-shell{max-width:1000px;margin:2rem auto;padding:2rem;background:rgba(0,0,0,0.6);border-radius:1rem;box-shadow:0 0 20px rgba(122,0,255,0.2);border:1px solid rgba(122,0,255,0.4);}
+    #calendar-shell h1{text-align:center;margin-bottom:1rem;text-shadow:0 0 10px rgba(255,0,92,.6),0 0 20px rgba(122,0,255,.6);text-transform:uppercase;font-size:2.5rem;}
     .shell-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;}
     .chips{display:flex;gap:.5rem;flex-wrap:wrap;}
     .chip{padding:.35rem .75rem;border-radius:9999px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);cursor:pointer;font-size:.8rem;display:flex;flex-direction:column;align-items:center;line-height:1.1;}
@@ -114,15 +109,8 @@
     </nav>
   </header>
   <main>
-    <section id="hero">
-      <h1>MYRI EVENTS</h1>
-      <p>Clan nights, boss runs, and community raids</p>
-      <div class="cta-group">
-        <button class="btn" data-scroll="#calendar-shell">View Calendar</button>
-        <button class="btn" id="open-subscribe">Subscribe</button>
-      </div>
-    </section>
     <section id="calendar-shell">
+      <h1>MYRI EVENTS</h1>
       <div class="shell-header">
         <div class="chips" aria-label="Game selector">
           <button class="chip active" data-calendar="runescape">RuneScape</button>
@@ -130,10 +118,11 @@
           <button class="chip disabled" data-calendar="battlefield"><span>Battlefield</span><span class="soon">Coming soon</span></button>
           <button class="chip disabled" data-calendar="counterstrike"><span>Counter-Strike</span><span class="soon">Coming soon</span></button>
         </div>
-        <div class="filters" aria-hidden="true">
-          <span class="chip">Today</span>
-          <span class="chip">This Month</span>
+        <div class="filters" aria-label="Calendar view">
+          <button class="chip active" data-view="AGENDA">Today</button>
+          <button class="chip" data-view="MONTH">This Month</button>
         </div>
+        <button class="btn" id="open-subscribe">Subscribe</button>
       </div>
       <div class="iframe-wrapper" id="calendar-container" aria-label="Event calendar" role="region">
         <iframe title="Myri Google Calendar"></iframe>
@@ -153,8 +142,7 @@
     <section class="etiquette">
       <p>Be on time, be respectful, and follow the host's instructions.</p>
       <div class="cta-group">
-        <button class="btn" data-link="https://discord.com/channels/1063782757450391644/1063782757958725666">See Clan Rules</button>
-        <button class="btn" data-link="https://discord.com/channels/1063782757450391644/1063782757958725666">Contact an Admin</button>
+        <button class="btn" data-link="https://discord.com/channels/1063782757450391644/1064544053322068099">Contact an Admin</button>
       </div>
     </section>
     <section id="footer-cta">
@@ -183,7 +171,6 @@
 
   <script>
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.querySelectorAll('[data-scroll]').forEach(el=>{el.addEventListener('click',()=>{const target=document.querySelector(el.getAttribute('data-scroll'));target&&target.scrollIntoView({behavior: prefersReduced?'auto':'smooth'});});});
     document.querySelectorAll('[data-link]').forEach(el=>{el.addEventListener('click',()=>{const url=el.getAttribute('data-link');window.open(url,'_blank','noopener');});});
     document.querySelectorAll('[data-copy]').forEach(el=>{el.addEventListener('click',()=>{const text=el.getAttribute('data-copy');navigator.clipboard.writeText(text).then(()=>{const fb=document.getElementById('copy-feedback');fb.textContent='Link copied';setTimeout(()=>{fb.textContent='';},2000);});});});
     const modal=document.getElementById('subscribe-modal');
@@ -199,16 +186,27 @@
       battlefield:'',
       counterstrike:''
     };
-    const buildSrc=id=>`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(id)}&ctz=Europe%2FLondon&mode=AGENDA&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showDate=0&showTz=0`;
+    let currentCalendar='runescape';
+    let currentView='AGENDA';
+    const buildSrc=(id,view)=>`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(id)}&ctz=Europe%2FLondon&mode=${view}&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showDate=0&showTz=0`;
     const iframe=document.querySelector('#calendar-container iframe');
-    iframe.dataset.src=buildSrc(calendarIds.runescape);
+    const setIframe=()=>{const src=buildSrc(calendarIds[currentCalendar],currentView);iframe.src=src;iframe.dataset.src=src;};
+    setIframe();
     document.querySelectorAll('[data-calendar]').forEach(btn=>{
       btn.addEventListener('click',()=>{
         if(btn.classList.contains('disabled')) return;
         document.querySelectorAll('[data-calendar]').forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
-        const key=btn.getAttribute('data-calendar');
-        iframe.src=buildSrc(calendarIds[key]);
+        currentCalendar=btn.getAttribute('data-calendar');
+        setIframe();
+      });
+    });
+    document.querySelectorAll('[data-view]').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('[data-view]').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        currentView=btn.getAttribute('data-view');
+        setIframe();
       });
     });
     const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){iframe.src=iframe.dataset.src;observer.disconnect();}});});
