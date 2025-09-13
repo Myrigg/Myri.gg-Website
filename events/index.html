@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Myri Events | Myri.gg</title>
+  <meta name="description" content="Clan nights, boss runs, and community raids" />
+  <meta property="og:title" content="Myri Events" />
+  <meta property="og:description" content="Clan nights, boss runs, and community raids" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://myri.gg/events/" />
+  <meta property="og:image" content="https://myri.gg/myri_logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Myri Events" />
+  <meta name="twitter:description" content="Clan nights, boss runs, and community raids" />
+  <meta name="twitter:image" content="https://myri.gg/myri_logo.png" />
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=1920&q=80" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/myri_logo.png" />
+  <style>
+    :root {
+      --bg1: #0f0c29;
+      --bg2: #302b63;
+      --bg3: #24243e;
+      --bg4: #1a1a2e;
+      --neon-red: #ff005c;
+      --neon-purple: #7a00ff;
+      --text-light: #ffffff;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body {
+      height:100%; width:100%;
+      font-family:"Poppins", sans-serif;
+      color:var(--text-light);
+      scroll-behavior:smooth;
+      background:#000;
+    }
+    body {
+      background:linear-gradient(-45deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4));
+      background-size:400% 400%;
+      animation:gradientShift 20s ease infinite;
+      display:flex;
+      flex-direction:column;
+    }
+    @keyframes gradientShift {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+    @media (prefers-reduced-motion: reduce){body{animation:none;}}
+    header {
+      padding:1rem 1.5rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:1.25rem;
+      font-weight:600;
+      letter-spacing:1px;
+      text-shadow:0 0 8px rgba(0,255,255,0.8),0 0 16px rgba(138,43,226,0.8);
+      border-bottom:2px solid rgba(255,255,255,0.1);
+      backdrop-filter:blur(6px);
+      position:sticky;top:0;z-index:10;
+    }
+    .branding{display:flex;align-items:center;gap:.5rem;color:#fff;text-decoration:none;}
+    .logo{height:40px;width:40px;}
+    nav a{color:#0ff;text-decoration:none;margin-left:1rem;font-size:.9rem;transition:color .2s;}
+    nav a:hover,nav a:focus{color:#fff;}
+    main{flex:1 1 auto;}
+    .btn{background:linear-gradient(90deg,var(--neon-red),var(--neon-purple));border:none;border-radius:9999px;padding:.75rem 1.5rem;color:#fff;font-weight:600;cursor:pointer;box-shadow:0 0 10px rgba(255,0,92,.5);transition:box-shadow .3s;}    
+    .btn:hover,.btn:focus{box-shadow:0 0 20px rgba(122,0,255,.7);}
+    .btn:focus{outline:2px solid #fff;outline-offset:2px;}
+    /* Hero */
+    #hero{min-height:70vh;padding:6rem 1rem 4rem;background-image:url('https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center;position:relative;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;}
+    #hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);background-image:radial-gradient(circle at center,rgba(255,0,92,.2),rgba(122,0,255,.2));}
+    #hero>*{position:relative;}
+    #hero h1{font-size:3rem;margin-bottom:1rem;text-shadow:0 0 10px rgba(255,0,92,.6),0 0 20px rgba(122,0,255,.6);}
+    #hero p{font-size:1.25rem;margin-bottom:2rem;}
+    #hero .cta-group{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+    /* Calendar card */
+    #calendar-shell{max-width:1000px;margin:4rem auto;padding:2rem;background:rgba(0,0,0,0.6);border-radius:1rem;box-shadow:0 0 20px rgba(122,0,255,0.2);border:1px solid rgba(122,0,255,0.4);}
+    .shell-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;}
+    .chips{display:flex;gap:.5rem;flex-wrap:wrap;}
+    .chip{padding:.35rem .75rem;border-radius:9999px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);cursor:pointer;font-size:.8rem;}
+    .chip.active{background:linear-gradient(90deg,var(--neon-red),var(--neon-purple));border:none;box-shadow:0 0 8px rgba(255,0,92,.6);}
+    .chip.disabled{opacity:.5;cursor:not-allowed;}
+    .ranges{display:flex;gap:.5rem;}
+    .range-link{background:none;border:none;color:#0ff;cursor:pointer;padding:.25rem .5rem;font-size:.9rem;border-radius:.25rem;}
+    .range-link:hover,.range-link:focus{color:#fff;text-decoration:underline;}
+    .iframe-wrapper{position:relative;width:100%;padding-top:62.5%;border-radius:.75rem;overflow:hidden;background:#1a1a2e;}
+    .iframe-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+    .tips{margin-top:.5rem;text-align:right;font-size:.8rem;}
+    .tips button{background:none;border:none;color:#0ff;cursor:pointer;}
+    .popover{position:absolute;right:0;margin-top:.25rem;background:#222;padding:.5rem 1rem;border-radius:.5rem;box-shadow:0 0 10px rgba(0,0,0,.5);width:250px;display:none;}
+    .popover p{font-size:.8rem;margin-bottom:.5rem;}
+    .etiquette{max-width:1000px;margin:2rem auto;padding:1rem 1.5rem;background:rgba(0,0,0,0.6);border-radius:.75rem;box-shadow:0 0 10px rgba(255,0,92,0.2);}
+    .etiquette a{color:#0ff;}
+    #footer-cta{text-align:center;margin:4rem 0;}
+    footer{text-align:center;padding:2rem 0;border-top:1px solid rgba(255,255,255,0.1);}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+    /* Modal */
+    .modal{position:fixed;top:0;left:0;width:100%;height:100%;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.8);}    
+    .modal-content{background:#111;padding:2rem;border-radius:1rem;max-width:90%;width:400px;text-align:center;box-shadow:0 0 20px rgba(122,0,255,0.4);}
+    .modal-content h2{margin-bottom:1rem;}
+    .modal-content button{display:block;width:100%;margin:.5rem 0;}
+    .close-modal{background:none;border:none;color:#fff;position:absolute;top:1rem;right:1rem;font-size:1.5rem;cursor:pointer;}
+  </style>
+</head>
+<body>
+  <header>
+    <a class="branding" href="/">
+      <img src="/myri_logo.png" alt="Myri.gg logo" class="logo" />
+      <span>Myri.gg</span>
+    </a>
+    <nav>
+      <a href="/minecraft/">Minecraft</a>
+      <a href="/cal/">Old Calendar</a>
+    </nav>
+  </header>
+  <main>
+    <section id="hero">
+      <h1>Myri Events</h1>
+      <p>Clan nights, boss runs, and community raids</p>
+      <div class="cta-group">
+        <button class="btn" data-scroll="#calendar-shell">View Calendar</button>
+        <button class="btn" id="open-subscribe">Subscribe</button>
+      </div>
+    </section>
+    <section id="calendar-shell">
+      <div class="shell-header">
+        <div class="chips" aria-label="Game selector">
+          <button class="chip active">RuneScape</button>
+          <button class="chip disabled" title="Coming soon">Minecraft</button>
+          <button class="chip disabled" title="Coming soon">Battlefield</button>
+          <button class="chip disabled" title="Coming soon">Counter-Strike</button>
+        </div>
+        <div class="ranges" aria-label="Quick ranges">
+          <button class="range-link" data-range="today" title="Use the Google controls inside the calendar to switch views">Today</button>
+          <button class="range-link" data-range="week" title="Use the Google controls inside the calendar to switch views">This Week</button>
+          <button class="range-link" data-range="month" title="Use the Google controls inside the calendar to switch views">This Month</button>
+        </div>
+      </div>
+      <div class="iframe-wrapper" id="calendar-container">
+        <iframe title="Myri Google Calendar" data-src="https://calendar.google.com/calendar/embed?src=myriads2x%40gmail.com&ctz=Europe%2FLondon"></iframe>
+      </div>
+      <div class="tips">
+        <button id="tips-btn" aria-haspopup="true" aria-expanded="false">Calendar tips</button>
+        <div class="popover" id="tips-popover" role="dialog">
+          <p>Use the Google controls inside the calendar to switch Month/Week/Agenda.</p>
+          <p>Events display in your local time while the clan reference time is Europe/London.</p>
+        </div>
+      </div>
+      <div id="calendar-fallback" class="tips" style="display:none;">
+        <p>Calendar failed to load. Third-party cookies may be blocked.</p>
+        <button class="btn" data-link="https://calendar.google.com/calendar/u/0/r?cid=myriads2x%40gmail.com">Open in Google Calendar</button>
+      </div>
+    </section>
+    <section class="etiquette">
+      <p><strong>Event Etiquette:</strong> Be on time, be respectful, and follow the host's instructions.</p>
+      <p><a href="https://discord.com/channels/1063782757450391644/1063782757958725666">Clan Rules</a> | <a href="https://discord.com/channels/1063782757450391644/1063782757958725666">Contact an Admin</a></p>
+    </section>
+    <section id="footer-cta">
+      <h2>See you at the next clan event</h2>
+      <div class="cta-group">
+        <button class="btn" data-link="https://calendar.google.com/calendar/u/0/r?cid=myriads2x%40gmail.com">Open Calendar in Google</button>
+        <button class="btn" data-link="https://discord.gg/">Join Discord</button>
+      </div>
+    </section>
+  </main>
+  <footer>&copy; 2024 Myri.gg</footer>
+
+  <div id="subscribe-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-modal" aria-label="Close modal">&times;</button>
+      <h2>Subscribe to Myri Events</h2>
+      <button class="btn" data-link="https://calendar.google.com/calendar/render?cid=myriads2x@gmail.com">Add to Google Calendar</button>
+      <button class="btn" data-link="webcal://calendar.google.com/calendar/ical/myriads2x%40gmail.com/public/basic.ics">Add to Apple Calendar</button>
+      <button class="btn" data-link="https://outlook.live.com/owa/?path=/calendar/action/compose&rru=addsubscription&url=https://calendar.google.com/calendar/ical/myriads2x%40gmail.com/public/basic.ics">Add to Outlook</button>
+      <button class="btn" data-copy="https://calendar.google.com/calendar/ical/myriads2x%40gmail.com/public/basic.ics">Copy ICS Feed</button>
+      <small>The calendar is mirrored to Discord. Subscribing keeps you in sync.</small>
+    </div>
+  </div>
+
+  <div id="copy-feedback" class="sr-only" role="status" aria-live="polite"></div>
+
+  <script>
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('[data-scroll]').forEach(el=>{el.addEventListener('click',()=>{const target=document.querySelector(el.getAttribute('data-scroll'));target&&target.scrollIntoView({behavior: prefersReduced?'auto':'smooth'});});});
+    document.querySelectorAll('[data-link]').forEach(el=>{el.addEventListener('click',()=>{const url=el.getAttribute('data-link');window.open(url,'_blank','noopener');});});
+    document.querySelectorAll('[data-copy]').forEach(el=>{el.addEventListener('click',()=>{const text=el.getAttribute('data-copy');navigator.clipboard.writeText(text).then(()=>{const fb=document.getElementById('copy-feedback');fb.textContent='Link copied';setTimeout(()=>{fb.textContent='';},2000);});});});
+    const modal=document.getElementById('subscribe-modal');
+    document.getElementById('open-subscribe').addEventListener('click',()=>{modal.style.display='flex';modal.setAttribute('aria-hidden','false');});
+    modal.addEventListener('click',e=>{if(e.target===modal||e.target.classList.contains('close-modal')){modal.style.display='none';modal.setAttribute('aria-hidden','true');}});
+    const tipsBtn=document.getElementById('tips-btn');
+    const popover=document.getElementById('tips-popover');
+    tipsBtn.addEventListener('click',()=>{const shown=popover.style.display==='block';popover.style.display=shown?'none':'block';tipsBtn.setAttribute('aria-expanded',String(!shown));});
+    document.addEventListener('click',e=>{if(!popover.contains(e.target) && e.target!==tipsBtn){popover.style.display='none';tipsBtn.setAttribute('aria-expanded','false');}});
+    const iframe=document.querySelector('#calendar-container iframe');
+    const params=new URLSearchParams(location.search);
+    const customSrc=params.get('calendarSrc');
+    if(customSrc) iframe.setAttribute('data-src',customSrc);
+    const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){iframe.src=iframe.getAttribute('data-src');observer.disconnect();}});});
+    observer.observe(iframe);
+    let loaded=false;
+    iframe.addEventListener('load',()=>{loaded=true;});
+    setTimeout(()=>{if(!loaded){document.getElementById('calendar-fallback').style.display='block';}},8000);
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Myri Events",
+    "description": "Clan nights, boss runs, and community raids",
+    "url": "https://myri.gg/events/"
+  }
+  </script>
+</body>
+</html>
