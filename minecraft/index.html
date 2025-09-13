@@ -3,65 +3,594 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Myri Minecraft</title>
+  <title>Myriad Minecraft Server | Myri.gg</title>
+  <meta name="description" content="Join the Myriad Minecraft server and explore the Fantasy MC Fabric modpack filled with magic, mystery, and adventure." />
+  <meta property="og:title" content="Myriad Minecraft Server" />
+  <meta property="og:description" content="Fantasy MC Fabric. Magic, mystery, and adventure." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://myri.gg/minecraft/" />
+  <meta property="og:image" content="https://myri.gg/myri_logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Myriad Minecraft Server" />
+  <meta name="twitter:description" content="Fantasy MC Fabric. Magic, mystery, and adventure." />
+  <meta name="twitter:image" content="https://myri.gg/myri_logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="/myri_logo.png" />
   <style>
+    :root {
+      --bg1: #0f0c29;
+      --bg2: #302b63;
+      --bg3: #24243e;
+      --bg4: #1a1a2e;
+      --neon-red: #ff005c;
+      --neon-purple: #7a00ff;
+      --text-light: #ffffff;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     html, body {
       height: 100%;
       width: 100%;
       font-family: "Poppins", sans-serif;
       background: #000;
-      overflow: hidden;
+      color: var(--text-light);
+      scroll-behavior: smooth;
     }
+
     body {
-      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
+      background: linear-gradient(-45deg, var(--bg1), var(--bg2), var(--bg3), var(--bg4));
       background-size: 400% 400%;
       animation: gradientShift 20s ease infinite;
       display: flex;
       flex-direction: column;
-      color: #fff;
-      text-align: center;
     }
+
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      body { animation: none; }
+    }
+
     header {
       padding: 1rem 1.5rem;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      font-size: 2rem;
+      font-size: 1.25rem;
       font-weight: 600;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       text-shadow: 0 0 8px rgba(0,255,255,0.8), 0 0 16px rgba(138,43,226,0.8);
       border-bottom: 2px solid rgba(255,255,255,0.1);
       backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
+
+    .branding {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #fff;
+      text-decoration: none;
+    }
+
     .logo {
       height: 40px;
-      margin-right: 10px;
+      width: 40px;
     }
-    main {
-      flex-grow: 1;
+
+    nav a {
+      color: #0ff;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    main { flex: 1 1 auto; }
+
+    /* Hero */
+    #hero {
+      min-height: 70vh;
+      padding: 6rem 1rem 4rem;
+      background-image: url("https://images.unsplash.com/photo-1526318472351-bc1e2a50d0b1?auto=format&fit=crop&w=1950&q=80");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+      text-align: center;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+    }
+
+    #hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(122,0,255,0.35);
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    #hero h1 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      z-index: 1;
+      text-shadow: 0 0 12px var(--neon-purple);
+    }
+
+    #hero p.subtitle {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      z-index: 1;
+    }
+
+    .hero-link {
+      margin-top: 1rem;
+      color: #0ff;
+      text-decoration: underline;
+      font-size: 0.9rem;
+      z-index: 1;
+    }
+
+    /* Buttons */
+    .btn {
+      background: var(--neon-purple);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--neon-purple);
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--neon-purple);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .btn { transition: none; }
+      .btn:hover { transform: none; box-shadow: 0 0 10px var(--neon-purple); }
+    }
+
+    /* About */
+    #about {
+      padding: 4rem 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    #about p { margin-top: 1rem; }
+
+    .glance {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .badge {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(122,0,255,0.4);
+      box-shadow: 0 0 10px rgba(122,0,255,0.3);
+      border-radius: 1rem;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .version {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .copy-chip {
+      background: rgba(122,0,255,0.2);
+      border: 1px solid rgba(122,0,255,0.5);
+      border-radius: 9999px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .copy-chip:hover {
+      background: rgba(122,0,255,0.4);
+    }
+
+    /* Carousel */
+    .carousel {
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .slides {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      scroll-behavior: smooth;
+      padding-bottom: 1rem;
+    }
+
+    .slide {
+      flex: 0 0 80%;
+      scroll-snap-align: center;
+      position: relative;
+    }
+
+    .slide img {
+      width: 100%;
+      border-radius: 1rem;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(122,0,255,0.4);
+      box-shadow: 0 0 10px rgba(122,0,255,0.3);
+    }
+
+    .slide p {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    .carousel button {
+      position: absolute;
+      top: 40%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(122,0,255,0.5);
+      color: #fff;
+      border-radius: 9999px;
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel .prev { left: 0.5rem; }
+    .carousel .next { right: 0.5rem; }
+
+    /* Join */
+    #join {
+      padding: 4rem 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(122,0,255,0.4);
+      box-shadow: 0 0 10px rgba(122,0,255,0.3);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: left;
+      position: relative;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .card small {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      opacity: 0.8;
+    }
+
+    .join-buttons {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    /* Play */
+    #play {
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+
+    #play .panel {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(122,0,255,0.4);
+      box-shadow: 0 0 10px rgba(122,0,255,0.3);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+
+    #play .panel p {
+      margin-top: 1rem;
+    }
+
+    #play .panel .small {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      margin-top: 0.5rem;
+    }
+
+    /* FAQ */
+    #faq {
+      padding: 4rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    details {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(122,0,255,0.4);
+      box-shadow: 0 0 10px rgba(122,0,255,0.3);
+      border-radius: 1rem;
       padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      outline: none;
+    }
+
+    /* CTA banner */
+    #cta {
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+
+    #cta h2 {
+      font-size: 1.8rem;
+    }
+
+    #cta p {
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.85rem;
+      border-top: 2px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
+      margin-top: auto;
+    }
+
+    /* Utility */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
   </style>
 </head>
 <body>
-  <header><img src="/favicon.ico" alt="Myri.gg Logo" class="logo" /><span>Myriad Minecraft</span></header>
+  <header>
+    <a href="/" class="branding"><img src="/favicon.ico" alt="Myri.gg Logo" class="logo" /><span>Myri.gg</span></a>
+    <nav aria-label="Main Navigation">
+      <a href="/discord/">Discord</a>
+      <a href="/cal/">Calendar</a>
+      <a href="/minecraft/">Minecraft</a>
+    </nav>
+  </header>
+
   <main>
-    <p>Information about our Minecraft server is coming soon.</p>
+    <section id="hero">
+      <h1>Myriad Minecraft Server</h1>
+      <p class="subtitle">Fantasy MC Fabric. Magic, mystery, and adventure.</p>
+      <div class="hero-actions">
+        <button class="btn" data-scroll="#join">How to Join</button>
+        <button class="btn" data-copy="mc.myri.gg">Copy Server IP</button>
+      </div>
+      <a href="https://www.curseforge.com/minecraft/modpacks/fantasy-minecraft-fabric" target="_blank" rel="noopener" class="hero-link">View the Modpack on CurseForge</a>
+    </section>
+
+    <section id="about">
+      <h2>About the Pack</h2>
+      <p>Fantasy-themed content while keeping the Vanilla feel. Optimized with performance mods. Configs tuned for seamless play. Hidden references to classic fantasy films and games.</p>
+      <div class="glance">
+        <span class="badge">🧵 Fabric</span>
+        <span class="badge">✨ Magic</span>
+        <span class="badge">🧭 Exploration</span>
+        <span class="badge">🗡️ Adventure &amp; RPG</span>
+        <span class="badge">📜 Quests</span>
+        <span class="badge">🍦 Vanilla+</span>
+      </div>
+      <div class="glance version" style="margin-top:1.5rem;">
+        <span>Fantasy MC Fabric-0.2.3.6 [BETA] for Minecraft 1.21.1</span>
+        <button class="copy-chip" data-copy="Fantasy MC Fabric-0.2.3.6 [BETA]">Copy</button>
+      </div>
+      <div class="carousel" aria-label="Screenshot Gallery">
+        <button class="prev" aria-label="Previous screenshot">&#9664;</button>
+        <div class="slides">
+          <div class="slide"><img src="https://via.placeholder.com/800x450?text=Screenshot+1" alt="Placeholder screenshot 1" /><p>Enchanted forests</p></div>
+          <div class="slide"><img src="https://via.placeholder.com/800x450?text=Screenshot+2" alt="Placeholder screenshot 2" /><p>Mysterious ruins</p></div>
+          <div class="slide"><img src="https://via.placeholder.com/800x450?text=Screenshot+3" alt="Placeholder screenshot 3" /><p>Epic quests await</p></div>
+        </div>
+        <button class="next" aria-label="Next screenshot">&#9654;</button>
+      </div>
+    </section>
+
+    <section id="join">
+      <h2>How to Join</h2>
+      <div class="steps">
+        <div class="card">
+          <h3><span aria-hidden="true">1.</span> Link your Minecraft account to your Microsoft account.</h3>
+        </div>
+        <div class="card">
+          <h3><span aria-hidden="true">2.</span> Download Prism Launcher.</h3>
+          <button class="btn" data-link="https://prismlauncher.org/">Download Prism Launcher</button>
+        </div>
+        <div class="card">
+          <h3><span aria-hidden="true">3.</span> Add an instance of Fantasy MC Fabric</h3>
+          <p>Version: Fantasy MC Fabric-0.2.3.6 [BETA]</p>
+          <button class="copy-chip" data-copy="Fantasy MC Fabric-0.2.3.6 [BETA]">Copy</button>
+        </div>
+        <div class="card">
+          <h3><span aria-hidden="true">4.</span> Join the server: <code>mc.myri.gg</code></h3>
+          <button class="copy-chip" data-copy="mc.myri.gg">Copy Server IP</button>
+          <small>Also listed publicly as ‘Myri.gg Myriad Fantasy MC’.</small>
+        </div>
+      </div>
+      <div class="join-buttons">
+        <button class="btn" data-link="https://prismlauncher.org/">Download Prism Launcher</button>
+        <button class="btn" data-copy="mc.myri.gg">Copy Server IP</button>
+        <button class="btn" data-link="https://www.curseforge.com/minecraft/modpacks/fantasy-minecraft-fabric">Open CurseForge Page</button>
+      </div>
+    </section>
+
+    <section id="play">
+      <div class="panel">
+        <h2>Play Together</h2>
+        <p>Chat with fellow adventurers while you explore.</p>
+        <button class="btn" data-link="https://discord.com/channels/1063782757450391644/1411305976472146092">Join 📦|minecraft Voice</button>
+        <p class="small">Please remember to follow our community rules.</p>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>FAQ</h2>
+      <details>
+        <summary>What version do I need?</summary>
+        <p>You need Fantasy MC Fabric-0.2.3.6 [BETA] for Minecraft 1.21.1.</p>
+      </details>
+      <details>
+        <summary>Performance tips</summary>
+        <p>Allocate reasonable RAM and take advantage of the performance mods included in the pack.</p>
+      </details>
+    </section>
+
+    <section id="cta">
+      <h2>Grab your pickaxe and build something legendary.</h2>
+      <p>See you in Myriad Fantasy MC.</p>
+      <button class="btn" data-scroll="#join">Start Playing</button>
+    </section>
   </main>
+
+  <footer>
+    &copy; 2024 Myri.gg
+  </footer>
+
+  <div id="copy-feedback" class="sr-only" role="status" aria-live="polite"></div>
+
+  <script>
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelectorAll('[data-copy]').forEach(el => {
+      el.addEventListener('click', () => {
+        const text = el.getAttribute('data-copy');
+        navigator.clipboard.writeText(text).then(() => {
+          const fb = document.getElementById('copy-feedback');
+          fb.textContent = text + ' copied';
+          setTimeout(() => { fb.textContent = ''; }, 2000);
+        });
+      });
+    });
+
+    document.querySelectorAll('[data-scroll]').forEach(el => {
+      el.addEventListener('click', () => {
+        const target = document.querySelector(el.getAttribute('data-scroll'));
+        target && target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' });
+      });
+    });
+
+    document.querySelectorAll('[data-link]').forEach(el => {
+      el.addEventListener('click', () => {
+        const url = el.getAttribute('data-link');
+        window.open(url, '_blank', 'noopener');
+      });
+    });
+
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      const slides = carousel.querySelector('.slides');
+      carousel.querySelector('.next').addEventListener('click', () => {
+        slides.scrollBy({ left: slides.clientWidth, behavior: prefersReduced ? 'auto' : 'smooth' });
+      });
+      carousel.querySelector('.prev').addEventListener('click', () => {
+        slides.scrollBy({ left: -slides.clientWidth, behavior: prefersReduced ? 'auto' : 'smooth' });
+      });
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://myri.gg/"},
+      {"@type": "ListItem", "position": 2, "name": "Minecraft", "item": "https://myri.gg/minecraft/"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Fantasy MC Fabric",
+    "operatingSystem": "Windows, macOS, Linux",
+    "applicationCategory": "Game",
+    "softwareVersion": "Fantasy MC Fabric-0.2.3.6 [BETA]",
+    "downloadUrl": "https://www.curseforge.com/minecraft/modpacks/fantasy-minecraft-fabric",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+  }
+  </script>
 </body>
 </html>
