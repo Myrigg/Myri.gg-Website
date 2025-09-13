@@ -55,6 +55,12 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* Better keyboard focus for buttons */
+    .btn:focus-visible {
+      outline: 3px solid rgba(255,255,255,.7);
+      outline-offset: 2px;
+    }
+    
     @media (prefers-reduced-motion: reduce) {
       body { animation: none; }
     }
@@ -557,6 +563,7 @@
       <h2>How to Join</h2>
 
       <div class="steps" role="list">
+        <!-- 0 -->
         <div class="card" role="listitem">
           <div class="step-head">
             <span class="step-num" aria-hidden="true">0</span>
@@ -567,7 +574,8 @@
             <a class="btn" href="https://www.minecraft.net/en-us/store/minecraft-java-bedrock-edition-pc" target="_blank" rel="noopener">Get Java Edition</a>
           </div>
         </div>
-
+      
+        <!-- 1 -->
         <div class="card" role="listitem">
           <div class="step-head">
             <span class="step-num" aria-hidden="true">1</span>
@@ -575,7 +583,8 @@
           </div>
           <p class="step-body">Ensure your Minecraft account is connected to your Microsoft account for authentication.</p>
         </div>
-
+      
+        <!-- 2 -->
         <div class="card" role="listitem">
           <div class="step-head">
             <span class="step-num" aria-hidden="true">2</span>
@@ -587,28 +596,39 @@
             <a class="btn" href="https://prismlauncher.org/wiki/getting-started/" target="_blank" rel="noopener">Prism Getting Started</a>
           </div>
         </div>
-
+      
+        <!-- 3 -->
         <div class="card" role="listitem">
           <div class="step-head">
             <span class="step-num" aria-hidden="true">3</span>
             <div class="step-title">Add the Fantasy MC Fabric instance <span aria-hidden="true">🧩</span></div>
           </div>
           <p class="step-body">Search for and add: <strong>Fantasy MC Fabric-0.2.3.6 [BETA]</strong> for Minecraft 1.21.1.</p>
-          <button class="copy-chip" data-copy="Fantasy MC Fabric-0.2.3.6 [BETA]" aria-label="Copy modpack version">
-            📋 Copy Modpack Version
-          </button>
-          <small style="display:block; margin-top:.6rem;"><a href="https://www.curseforge.com/minecraft/modpacks/fantasy-minecraft-fabric" target="_blank" rel="noopener" style="color: var(--link);">View on CurseForge</a></small>
+          <button class="copy-chip" data-copy="Fantasy MC Fabric-0.2.3.6 [BETA]" aria-label="Copy modpack version">📋 Copy Modpack Version</button>
+          <small style="display:block; margin-top:.6rem;">
+            <a href="https://www.curseforge.com/minecraft/modpacks/fantasy-minecraft-fabric" target="_blank" rel="noopener" style="color: var(--link);">View on CurseForge</a>
+          </small>
         </div>
-
+      
+        <!-- 4 (NEW) -->
         <div class="card" role="listitem">
           <div class="step-head">
             <span class="step-num" aria-hidden="true">4</span>
+            <div class="step-title">Sign into Prism with Microsoft <span aria-hidden="true">🔐</span></div>
+          </div>
+          <p class="step-body">
+            In Prism Launcher, add your Microsoft account (<em>Accounts → Manage Accounts → Add</em>). This only shares your xbox profile details to show that you own a copy of minecraft to be able to launch the game.
+          </p>
+        </div>
+      
+        <!-- 5 (Join server, renumbered) -->
+        <div class="card" role="listitem">
+          <div class="step-head">
+            <span class="step-num" aria-hidden="true">5</span>
             <div class="step-title">Join the server <span aria-hidden="true">🌐</span></div>
           </div>
           <p class="step-body">Use server address: <code>mc.myri.gg</code></p>
-          <button class="copy-chip" data-copy="mc.myri.gg" aria-label="Copy server IP">
-            📋 Copy Server IP
-          </button>
+          <button class="copy-chip" data-copy="mc.myri.gg" aria-label="Copy server IP">📋 Copy Server IP</button>
           <small style="display:block; margin-top:.6rem; opacity:.8;">Also listed publicly as ‘Myri.gg Myriad Fantasy MC’.</small>
         </div>
       </div>
@@ -616,7 +636,7 @@
       <div class="join-buttons">
         <a class="btn" href="https://prismlauncher.org/" target="_blank" rel="noopener">Download Prism Launcher</a>
         <a class="btn" href="https://prismlauncher.org/wiki/getting-started/" target="_blank" rel="noopener">Prism Getting Started</a>
-        <a class="btn" href="https://www.curseforge.com/minecraft/modpacks/fantasy-minecraft-fabric" target="_blank" rel="noopener">Open CurseForge Page</a>
+        <a class="btn" href="https://www.curseforge.com/minecraft/modpacks/fantasy-minecraft-fabric" target="_blank" rel="noopener">ModPack info Page</a>
         <button class="btn" data-copy="mc.myri.gg" aria-label="Copy server IP (bottom)">Copy Server IP</button>
       </div>
     </section>
@@ -625,7 +645,7 @@
       <div class="panel">
         <h2>Play Together</h2>
         <p>Chat with fellow adventurers while you explore.</p>
-        <a class="btn" href="https://discord.com/channels/1063782757450391644/1411305976472146092" target="_blank" rel="noopener">Join 📦|minecraft Voice</a>
+        <a class="btn" href="https://discord.com/channels/1063782757450391644/1411305976472146092" target="_blank" rel="noopener">Join 📦| Minecraft VC</a>
         <p class="small">Please remember to follow our community rules.</p>
       </div>
     </section>
@@ -639,6 +659,13 @@
       <details>
         <summary>Performance tips</summary>
         <p>Allocate reasonable RAM and take advantage of the performance mods included in the pack.</p>
+      </details>
+      <details>
+        <summary>Java vs Bedrock — which do I need?</summary>
+        <p>
+          You need <strong>Minecraft: Java Edition</strong> on PC (Windows/macOS/Linux). Bedrock (console/mobile/Windows Store) is
+          <em>not</em> compatible with this server.
+        </p>
       </details>
     </section>
 
@@ -705,6 +732,19 @@
       nextBtn.addEventListener('click', () => scrollByAmount(1));
       prevBtn.addEventListener('click', () => scrollByAmount(-1));
     });
+
+    // Keyboard control for the screenshots carousel
+    document.querySelectorAll('.slides').forEach(slides => {
+      slides.setAttribute('tabindex','0'); // make focusable
+      slides.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') {
+          slides.scrollBy({ left: slides.clientWidth, behavior: prefersReduced ? 'auto' : 'smooth' });
+        }
+        if (e.key === 'ArrowLeft') {
+          slides.scrollBy({ left: -slides.clientWidth, behavior: prefersReduced ? 'auto' : 'smooth' });
+        }
+      });
+    });
   </script>
 
   <!-- Structured Data -->
@@ -733,4 +773,3 @@
   </script>
 </body>
 </html>
-
