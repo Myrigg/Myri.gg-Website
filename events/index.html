@@ -177,15 +177,51 @@
 
   <script>
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.querySelectorAll('[data-link]').forEach(el=>{el.addEventListener('click',()=>{const url=el.getAttribute('data-link');window.open(url,'_blank','noopener');});});
-    document.querySelectorAll('[data-copy]').forEach(el=>{el.addEventListener('click',()=>{const text=el.getAttribute('data-copy');navigator.clipboard.writeText(text).then(()=>{const fb=document.getElementById('copy-feedback');fb.textContent='Link copied';setTimeout(()=>{fb.textContent='';},2000);});});});
+
+    document.querySelectorAll('[data-link]').forEach(el=>{
+      el.addEventListener('click',()=>{
+        const url=el.getAttribute('data-link');
+        window.open(url,'_blank','noopener');
+      });
+    });
+
+    document.querySelectorAll('[data-copy]').forEach(el=>{
+      el.addEventListener('click',()=>{
+        const text=el.getAttribute('data-copy');
+        navigator.clipboard.writeText(text).then(()=>{
+          const fb=document.getElementById('copy-feedback');
+          fb.textContent='Link copied';
+          setTimeout(()=>{fb.textContent='';},2000);
+        });
+      });
+    });
+
     const modal=document.getElementById('subscribe-modal');
-    document.getElementById('open-subscribe').addEventListener('click',()=>{modal.style.display='flex';modal.setAttribute('aria-hidden','false');});
-    modal.addEventListener('click',e=>{if(e.target===modal||e.target.classList.contains('close-modal')){modal.style.display='none';modal.setAttribute('aria-hidden','true');}});
+    document.getElementById('open-subscribe').addEventListener('click',()=>{
+      modal.style.display='flex';
+      modal.setAttribute('aria-hidden','false');
+    });
+    modal.addEventListener('click',e=>{
+      if(e.target===modal||e.target.classList.contains('close-modal')){
+        modal.style.display='none';
+        modal.setAttribute('aria-hidden','true');
+      }
+    });
+
     const tipsBtn=document.getElementById('tips-btn');
     const popover=document.getElementById('tips-popover');
-    tipsBtn.addEventListener('click',()=>{const shown=popover.style.display==='block';popover.style.display=shown?'none':'block';tipsBtn.setAttribute('aria-expanded',String(!shown));});
-    document.addEventListener('click',e=>{if(!popover.contains(e.target) && e.target!==tipsBtn){popover.style.display='none';tipsBtn.setAttribute('aria-expanded','false');}});
+    tipsBtn.addEventListener('click',()=>{
+      const shown=popover.style.display==='block';
+      popover.style.display=shown?'none':'block';
+      tipsBtn.setAttribute('aria-expanded',String(!shown));
+    });
+    document.addEventListener('click',e=>{
+      if(!popover.contains(e.target) && e.target!==tipsBtn){
+        popover.style.display='none';
+        tipsBtn.setAttribute('aria-expanded','false');
+      }
+    });
+
     const calendarIds={
       runescape:'myriads2x@gmail.com',
       minecraft:'',
@@ -197,8 +233,14 @@
     const buildSrc=(id,view)=>`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(id)}&ctz=Europe%2FLondon&mode=${view}&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showDate=0&showTz=0`;
     const iframe=document.querySelector('#calendar-container iframe');
     const iframeWrapper=document.querySelector('.iframe-wrapper');
-    const setIframe=()=>{const src=buildSrc(calendarIds[currentCalendar],currentView);iframe.src=src;iframe.dataset.src=src;};
+
+    const setIframe=()=>{
+      const src=buildSrc(calendarIds[currentCalendar],currentView);
+      iframe.src=src;
+      iframe.dataset.src=src;
+    };
     setIframe();
+
     document.querySelectorAll('[data-calendar]').forEach(btn=>{
       btn.addEventListener('click',()=>{
         if(btn.classList.contains('disabled')) return;
@@ -208,6 +250,7 @@
         setIframe();
       });
     });
+
     document.querySelectorAll('[data-view]').forEach(btn=>{
       btn.addEventListener('click',()=>{
         document.querySelectorAll('[data-view]').forEach(b=>b.classList.remove('active'));
@@ -216,11 +259,25 @@
         setIframe();
       });
     });
-    const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){iframe.src=iframe.dataset.src;observer.disconnect();}});});
+
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          iframe.src=iframe.dataset.src;
+          observer.disconnect();
+        }
+      });
+    });
     observer.observe(iframe);
+
     let loaded=false;
     iframe.addEventListener('load',()=>{loaded=true;});
-    setTimeout(()=>{if(!loaded){document.getElementById('calendar-fallback').style.display='block';}},8000);
+    setTimeout(()=>{
+      if(!loaded){
+        document.getElementById('calendar-fallback').style.display='block';
+      }
+    },8000);
+
     const resizeCalendar=()=>{
       if(window.innerWidth<=600){
         const top=document.getElementById('calendar-shell').getBoundingClientRect().top;
