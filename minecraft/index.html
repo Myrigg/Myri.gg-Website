@@ -105,18 +105,19 @@
 
     /* Hero */
     #hero {
-      min-height: 70vh;
-      padding: 6rem 1rem 4rem;
-      background-image: url("fantasy-mc-header.png");
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      position: relative;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    min-height: 70vh;
+    padding: 6rem 1rem 4rem;
+    background-image: url("fantasy-mc-header.png");
+    background-size: 100% auto;   /* always full width */
+    background-repeat: no-repeat; /* prevent tiling */
+    background-position: top center;
+    background-attachment: scroll; /* fixed can cause issues on mobile */
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     }
 
     #hero::after {
