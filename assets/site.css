@@ -61,7 +61,8 @@ nav a{
 }
 nav a:hover{color:#fff;}
 nav a.active,nav a[aria-current="page"]{color:#fff;background:rgba(22,217,255,.12);}
-main{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;text-align:center;}
+main{flex:1 1 auto;}
+.main-centered{display:flex;flex-direction:column;align-items:center;text-align:center;}
 footer{text-align:center;font-size:.75rem;padding:1rem;color:rgba(255,255,255,.6);}
 .container{width:100%;max-width:900px;margin:0 auto;padding:2rem 1rem;}
 .btn{display:inline-block;padding:0.75rem 1.5rem;font-weight:600;border-radius:8px;text-decoration:none;}
@@ -84,6 +85,6 @@ iframe{width:100%;height:100%;border:none;}
   main{padding:1rem;}
   .calendar-wrapper{aspect-ratio:auto;height:100%;}
 }
-.uc-card{background:rgba(0,0,0,.35);padding:3rem 2rem;border-radius:var(--tile-radius);box-shadow:0 0 20px rgba(122,0,255,.4);max-width:500px;margin:auto;}
+.uc-card{background:rgba(0,0,0,.35);padding:3rem 2rem;border-radius:var(--tile-radius);box-shadow:0 0 20px rgba(122,0,255,.4);max-width:500px;margin:auto;text-align:center;}
 .uc-card .actions{margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
 .discord-widget{width:100%;max-width:500px;height:500px;}
