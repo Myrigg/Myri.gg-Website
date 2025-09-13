@@ -3,159 +3,152 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Myri.gg</title>
+  <title>Myri.gg — Play What You Love</title>
+  <meta name="description" content="Jump into Myri: RuneScape 3, Minecraft, FPS and our Discord community." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="/myri_logo.png" />
-  
   <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --bg1:#0f0c29;
+      --bg2:#302b63;
+      --bg3:#24243e;
+      --bg4:#1a1a2e;
+      --neon-red:#ff005c;
+      --neon-purple:#7a00ff;
+      --link:#16d9ff;
+      --text-light:#ffffff;
+      --tile-radius:24px;
     }
-
-    html, body {
-      height: 100%;
-      width: 100%;
-      font-family: "Poppins", sans-serif;
-      background: #000;
-      overflow: hidden;
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html,body{
+      height:100%;width:100%;
+      font-family:"Poppins",sans-serif;
+      color:var(--text-light);
+      background:#000;
+      scroll-behavior:smooth;
     }
-
-    /* Background gradient animation */
-    body {
-      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
-      background-size: 400% 400%;
-      animation: gradientShift 20s ease infinite;
-      display: flex;
-      flex-direction: column;
+    body{
+      background:linear-gradient(-45deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4));
+      background-size:400% 400%;
+      animation:gradientShift 20s ease infinite;
+      display:flex;flex-direction:column;
     }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes gradientShift{
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
     }
-
-    /* Header */
-    header {
-      padding: 1rem 1.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-shadow: 0 0 8px rgba(0,255,255,0.8), 0 0 16px rgba(138,43,226,0.8);
-      border-bottom: 2px solid rgba(255,255,255,0.1);
-      backdrop-filter: blur(6px);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+    @media (prefers-reduced-motion:reduce){
+      body{animation:none;}
+      .tile{transition:none;}
+      .tile:hover,.tile:focus-visible{transform:none;}
     }
-
-    .branding {
-      display: flex;
-      align-items: center;
+    .btn:focus-visible{outline:3px solid rgba(255,255,255,.7);outline-offset:2px;}
+    header{
+      padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;
+      font-size:1.1rem;font-weight:600;letter-spacing:.5px;
+      text-shadow:0 0 8px rgba(0,255,255,.5),0 0 12px rgba(122,0,255,.5);
+      border-bottom:2px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(6px);
+      background-color:rgba(0,0,0,.35);
+      position:sticky;top:0;z-index:10;
     }
-
-    .logo {
-      height: 40px;
-      margin-right: 10px;
+    .branding{display:flex;align-items:center;gap:.5rem;color:#fff;text-decoration:none;}
+    .branding img{height:40px;width:40px;}
+    nav a{
+      color:var(--link);text-decoration:none;margin-left:1rem;font-size:.95rem;
+      transition:color .15s;padding:.25rem .4rem;border-radius:.4rem;
     }
-
-    /* Primary CTA */
-    .cta {
-      text-align: center;
-      margin: 1.5rem 0;
+    nav a:hover{color:#fff;}
+    main{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;text-align:center;}
+    #cta{margin:3rem auto 2rem;}
+    #cta .btn{
+      display:inline-block;padding:1rem 2rem;font-size:1.3rem;font-weight:600;
+      color:#fff;background:#5865f2;text-decoration:none;border-radius:8px;
+      box-shadow:0 0 10px rgba(88,101,242,.6);transition:transform .2s;
     }
-
-    .cta a {
-      display: inline-block;
-      font-size: 1.2rem;
-      color: #fff;
-      background: #5865f2;
-      text-decoration: none;
-      padding: 0.8rem 1.6rem;
-      border-radius: 6px;
-      box-shadow: 0 0 10px rgba(88,101,242,0.6);
-      transition: transform 0.2s;
+    #cta .btn:hover{transform:scale(1.05);}
+    #grid{
+      width:100%;max-width:900px;display:grid;gap:20px;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      padding:0 1rem 3rem;
     }
-
-    .cta a:hover {
-      transform: scale(1.05);
+    .tile{
+      position:relative;border-radius:var(--tile-radius);overflow:hidden;
+      display:grid;place-items:center;cursor:pointer;text-align:center;
+      background:rgba(255,255,255,.02);
+      border:2px solid var(--neon-purple);
+      box-shadow:0 0 12px rgba(122,0,255,.5),0 0 28px rgba(122,0,255,.25);
+      transition:transform .3s ease,box-shadow .3s ease;
     }
-
-    /* Quick links */
-    .quick-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
+    .tile:hover,.tile:focus-visible{
+      transform:scale(1.03);
+      box-shadow:0 0 18px rgba(122,0,255,.8),0 0 40px rgba(122,0,255,.4);
     }
-
-    .quick-links a {
-      font-size: 1rem;
-      color: #0ff;
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      transition: background 0.3s, color 0.3s;
+    .tile::before{
+      content:"";position:absolute;inset:0;
+      background:var(--image,#111) center/cover no-repeat;
+      z-index:-1;opacity:.8;
     }
-
-    .quick-links a:hover {
-      background: rgba(0,255,255,0.2);
-      color: #fff;
+    .label{
+      padding:.9rem 1.2rem;border-radius:14px;
+      background:rgba(0,0,0,.6);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 0 14px rgba(122,0,255,.45);
+      font-weight:600;font-size:clamp(18px,2.2vw,28px);
     }
-
-    /* Iframe */
-    iframe {
-      flex-grow: 1;
-      border: none;
-      width: 100%;
-      height: 100%;
-      max-width: 500px;
-      margin: auto;
-      filter: drop-shadow(0 0 20px rgba(0,200,255,0.3));
+    .sub{
+      margin-top:.4rem;color:#cfc6ff;font-weight:600;font-size:clamp(12px,1.4vw,16px);
     }
-
-    /* Subtle hover pulse on header */
-    header:hover {
-      text-shadow: 0 0 12px rgba(0,255,255,1), 0 0 24px rgba(138,43,226,1);
-      transition: text-shadow 0.3s ease-in-out;
-    }
+    .rs3{--image:url('/images/rs3-hero.jpg');}
+    .mc{--image:url('/images/mc-hero.jpg');}
+    .fps{--image:url('/images/fps-hero.jpg');}
+    .disc{--image:url('/images/discord-hero.jpg');}
+    footer{text-align:center;font-size:.75rem;padding:1rem;color:rgba(255,255,255,.6);}
   </style>
 </head>
 <body>
   <header>
-    <div class="branding"><img src="/favicon.ico" alt="Myri.gg Logo" class="logo" /><span>Myri.gg</span></div>
+    <a href="/" class="branding"><img src="/myri_logo.png" alt="Myri.gg logo"><span>Myri.gg</span></a>
+    <nav>
+      <a href="/minecraft/">Minecraft</a>
+      <a href="/cal/">Calendar</a>
+      <a href="/discord/">Discord</a>
+    </nav>
   </header>
-
-  <section class="cta">
-    <a href="https://discord.gg/JoinMyriad">Join us on Discord</a>
-  </section>
-
-  <nav class="quick-links">
-    <a href="/discord/">Discord</a>
-    <a href="/cal/">Calendar</a>
-    <a href="/minecraft/">Minecraft</a>
-  </nav>
-
-  <iframe src="https://discord.com/widget?id=1063782757450391644&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-
-  <script>
-    const header = document.querySelector("header");
-    setInterval(() => {
-      header.style.textShadow =
-        "0 0 12px rgba(0,255,255,0.9), 0 0 24px rgba(138,43,226,0.9)";
-      setTimeout(() => {
-        header.style.textShadow =
-          "0 0 8px rgba(0,255,255,0.6), 0 0 16px rgba(138,43,226,0.6)";
-      }, 600);
-    }, 4000);
-  </script>
+  <main>
+    <section id="cta">
+      <a href="https://discord.gg/JoinMyriad" class="btn">Join Discord</a>
+    </section>
+    <section id="grid">
+      <a class="tile rs3" href="/runescape/" aria-label="RuneScape 3">
+        <div>
+          <div class="label">RuneScape 3</div>
+          <div class="sub">Clans • Bossing • Events</div>
+        </div>
+      </a>
+      <a class="tile mc" href="/minecraft/" aria-label="Minecraft">
+        <div>
+          <div class="label">Minecraft</div>
+          <div class="sub">Fantasy MC Fabric • 1.21.x</div>
+        </div>
+      </a>
+      <a class="tile fps" href="/fps/" aria-label="FPS">
+        <div>
+          <div class="label">FPS — CS2 / Battlefield</div>
+          <div class="sub">Servers • LFG • Tournaments</div>
+        </div>
+      </a>
+      <a class="tile disc" href="/discord/" aria-label="Discord">
+        <div>
+          <div class="label">Discord</div>
+          <div class="sub">Chat • VC • Announcements</div>
+        </div>
+      </a>
+    </section>
+  </main>
+  <footer>© 2025 Myri.gg</footer>
 </body>
 </html>
