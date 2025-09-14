@@ -108,106 +108,8 @@
 
     main { flex: 1 1 auto; }
 
-    /* Hero */
-    #hero {
-      min-height: 72vh;
-      padding: 6rem 1rem 4rem;
-      background-image: url("fantasy-mc-header.png");
-      background-size: cover;           /* fill width on larger screens */
-      background-repeat: no-repeat;
-      background-position: center;      /* keep image centered */
-      background-attachment: scroll;    /* no parallax issues on mobile */
-      position: relative;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    /* hero image shown on small screens */
-    .hero-img {
-      display: none;
-    }
-
-    @media (max-width: 600px) {
-      #hero {
-        background-image: none;      /* use inline image instead */
-        padding-top: 1.5rem;
-      }
-
-      .hero-img {
-        display: block;
-        width: 100%;
-        height: auto;
-        border-radius: 0.75rem;
-        margin-bottom: 1.25rem;
-      }
-
-      /* ensure text appears above gradient overlay */
-      #hero h1,
-      #hero p.subtitle,
-      .hero-actions,
-      .hero-link {
-        position: relative;
-        z-index: 2;
-      }
-
-      #hero::after {
-        z-index: 1;
-      }
-    }
-
-    #hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      /* safer readable overlay than blend modes */
-      background: linear-gradient(
-        to bottom,
-        rgba(10, 0, 25, .35) 0%,
-        rgba(10, 0, 25, .55) 70%,
-        rgba(10, 0, 25, .7) 100%
-      );
-      pointer-events: none;
-    }
-
-    #hero h1 {
-      font-size: clamp(1.9rem, 3.4vw, 2.6rem);
-      line-height: 1.2;
-      z-index: 1;
-      text-shadow: 0 0 12px rgba(122,0,255,.75);
-      padding: .25rem .6rem;
-      border-radius: .6rem;
-    }
-
-    #hero p.subtitle {
-      margin-top: 0.5rem;
-      font-size: clamp(1rem, 2.2vw, 1.15rem);
-      z-index: 1;
-      opacity: .95;
-    }
-
-    .hero-actions {
-      margin-top: 1.25rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      z-index: 1;
-    }
-
-    .hero-link {
-      margin-top: 1rem;
-      color: var(--link);
-      text-decoration: underline;
-      font-size: 0.95rem;
-      z-index: 1;
-    }
-    .hero-link:hover { color: #fff; }
-
-    /* Buttons */
-    .btn {
+      /* Buttons */
+      .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -440,8 +342,8 @@
   <div data-include="/partials/header.html"></div>
 
   <main>
-    <section id="hero" aria-label="Myri Minecraft Hero">
-      <img src="fantasy-mc-header.png" alt="A view of the Fantasy MC world" class="hero-img" />
+    <section class="hero" aria-label="Myri Minecraft Hero">
+      <div class="hero-image" style="background-image:url('fantasy-mc-header.png');"></div>
       <h1>Myri Minecraft Server</h1>
       <p class="subtitle">Fantasy MC Fabric. Magic, mystery, and adventure.</p>
       <div class="hero-actions">
